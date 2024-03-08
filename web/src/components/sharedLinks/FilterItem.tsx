@@ -15,6 +15,7 @@ import {
 } from "./MultipleFilterItem";
 
 export const supportQueryKeys = [
+  "host",
   "title",
   "original_link",
   "host_shared_link",

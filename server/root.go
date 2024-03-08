@@ -138,6 +138,7 @@ func apiRouter(router *gin.Engine) {
 	g.DELETE("/blacklist", mdw.Auth, removeFromBlackList)
 
 	g.GET("/host/info", mdw.Auth, getHostInfo)
+	g.POST("/host/info", mdw.Auth, changeHostInfo)
 }
 
 func consoleRouter(router *gin.Engine) {

@@ -27,8 +27,10 @@ const Content = () => {
     state.setTotalSharedLinks,
   ]);
 
+  const [currentHostName, setCurrentHostName] = useState<string>("RapidGator");
   const [pageInfo, setPageInfo] = useState<PaginationInfo>({
     search: "",
+    // search: `host:"${currentHostName.toLowerCase()}"`,
     pageIndex: 1,
     pageSize: 10,
   });
@@ -66,7 +68,13 @@ const Content = () => {
     setPageInfo({ search, pageIndex, pageSize });
   };
 
+  const [currentSearch, setCurrentSearch] = useState<string>("");
   const handleSearch = (search: string) => {
+    setCurrentSearch(search)
+
+    // search = search + " " + `host:"${currentHostName.toLowerCase()}"`;
+    search = search + " " + `host:"${currentHostName}"`;
+
     setPageInfo({ search, pageIndex: 0, pageSize });
   };
 
@@ -76,9 +84,24 @@ const Content = () => {
   const handleFormat = (formatType: LinkFormatType) =>
     setFormatType(formatType);
 
+  const handleHost = (hostName: string) => {
+    setCurrentHostName(hostName);
+
+    // use hostName directly, currentHostName is not changed now;
+    // let search = currentSearch + " " + `host:"${hostName.toLowerCase()}"`;
+    let search = currentSearch + " " + `host:"${hostName}"`;
+
+    setPageInfo({ search, pageIndex: 0, pageSize });
+  };
+
   return (
     <>
-      <TableFilter handleFormat={handleFormat} handleSearch={handleSearch} />
+      <TableFilter
+        handleFormat={handleFormat}
+        handleHost={handleHost}
+        handleSearch={handleSearch}
+        hostName={currentHostName}
+      />
       <SharedLinkTable
         refresh={mutate}
         formatType={formatType}

@@ -48,6 +48,56 @@ func getHostInfo(c *gin.Context) {
 	c.JSON(http.StatusOK, resp)
 }
 
+// only used by RapidGator currently;
+func changeHostInfo(c *gin.Context) {
+	type Req struct {
+		Account  string `json:"account"`
+		Password string `json:"password"`
+		Action   string `json:"action"`
+	}
+
+	resp := gin.H{"success": true}
+
+	var req Req
+	if err := c.BindJSON(&req); err != nil {
+		c.JSON(http.StatusBadRequest, mdw.ErrResp(c, "invalid_params", i18n.WithDataMap("error", err.Error())))
+		return
+	}
+
+	ctx := c.Request.Context()
+	userID := c.GetString(constant.UserID)
+
+	q := c.Request.URL.Query()
+	opt := make(map[string]any, len(q))
+	for k, v := range q {
+		if len(v) > 0 {
+			opt[k] = v[0]
+		} else {
+			opt[k] = nil
+		}
+	}
+
+	hostName, _ := opt["host"].(string)
+	if hostName == "" {
+		hostName = config.DefaultHost()
+	}
+	host := hosts.Get(hostName)
+	if host == nil {
+		c.JSON(http.StatusBadRequest, mdw.ErrResp(c, "invalid_host", i18n.WithDataMap("host", hostName)))
+		return
+	}
+
+	// resp, err := host.HostInfo(ctx, userID, opt)
+	data := map[string]any{"account": req.Account, "password": req.Password, "action": req.Action}
+	resp, err := host.HostInfo(ctx, userID, data)
+	if err != nil {
+		mdw.RespInternal(c, err.Error())
+		return
+	}
+
+	c.JSON(http.StatusOK, resp)
+}
+
 //func releaseStorage(c *gin.Context) {
 //	ctx := c.Request.Context()
 //	userID := c.GetString(constant.UserID)

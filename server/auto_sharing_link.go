@@ -216,6 +216,8 @@ func splitPath(path string) (channel, link string) {
 }
 
 func validateLink(link string) (simple string, hash string, ok bool) {
+	// cut params from link, such as "host";
+	link, _, _ = strings.Cut(link, "?")
 	link = strings.TrimLeft(link, "/")
 	link = strings.TrimSpace(link)
 

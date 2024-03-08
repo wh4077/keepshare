@@ -212,6 +212,7 @@ var types = make(map[SupportQueryKey]any)
 func initQueryTypes() {
 	table := query.SharedLink
 	for _, f := range []field.Expr{
+		table.Host,
 		table.Title,
 		table.OriginalLink, // TODO query by hash
 		table.HostSharedLink,

@@ -78,10 +78,11 @@ interface CreateShareLinkResponse {
   links: SharedLinkInfo[];
 }
 // create share link by resource link(current just support magnet)
-export const createShareLink = (links: string[]) => {
+export const createShareLink = (links: string[], hostName: string) => {
   return axiosWrapper<CreateShareLinkResponse>({
     method: "POST",
-    url: "/api/shared_links",
+    // url: "/api/shared_links",
+    url: `/api/shared_links?host=${hostName}`,
     data: { links },
   });
 };
@@ -163,7 +164,7 @@ export const removeFromBlacklist = (links: string[], isDeleteFile = false) => {
   });
 };
 
-/* 
+/*
   get resource link from "WhatsLinks"
   https://whatslink.info/
 */

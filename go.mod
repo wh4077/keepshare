@@ -3,6 +3,7 @@ module github.com/KeepShareOrg/keepshare
 go 1.20
 
 require (
+	github.com/KeepShareOrg/keepshare/hosts/rapidgator v0.0.0-00010101000000-000000000000
 	github.com/alecthomas/participle/v2 v2.0.0
 	github.com/cespare/xxhash/v2 v2.2.0
 	github.com/coocood/freecache v1.2.3
@@ -81,3 +82,5 @@ require (
 	gorm.io/datatypes v1.1.1-0.20230130040222-c43177d3cf8c // indirect
 	gorm.io/hints v1.1.0 // indirect
 )
+
+replace github.com/KeepShareOrg/keepshare/hosts/rapidgator => ./hosts/rapidgator

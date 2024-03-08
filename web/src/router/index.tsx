@@ -15,6 +15,7 @@ const SharedLinks = lazy(() => import("@/pages/sharedLinks/Index"));
 const Settings = lazy(() => import("@/pages/settings/Settings"));
 const PikPak = lazy(() => import("@/pages/management/pikpak/PikPak"));
 const Mega = lazy(() => import("@/pages/management/mega/Mega"));
+const RapidGator = lazy(() => import("@/pages/management/rapidgator/RapidGator"));
 const SharedStatus = lazy(() => import("@/pages/sharedStatus/SharedStatus"));
 const Donation = lazy(() => import("@/pages/donation/Donation"));
 const EmailVerification = lazy(() => import("@/pages/email/Verification"));
@@ -30,6 +31,7 @@ export const enum RoutePaths {
   Settings = "/console/settings",
   PikPak = "/console/management/pikpak",
   Mega = "/console/management/mega",
+  RapidGator = "/console/management/rapidgator",
   SharedStatus = "/console/shared/status",
   Donation = "/console/donation",
   EmailVerification = "/console/email-verification",
@@ -107,6 +109,10 @@ const router = createBrowserRouter(
           {
             path: RoutePaths.Mega,
             element: <Mega />,
+          },
+          {
+            path: RoutePaths.RapidGator,
+            element: <RapidGator />,
           },
         ],
       },

@@ -8,8 +8,10 @@ import useStore from "@/store";
 interface ComponentProps {
   handleSearch: (search: string) => void;
   handleFormat: (formatType: LinkFormatType) => void;
+  handleHost: (hostName: string) => void;
+  hostName: string;
 }
-const TableFilter = ({ handleSearch, handleFormat }: ComponentProps) => {
+const TableFilter = ({ handleSearch, handleFormat, handleHost, hostName }: ComponentProps) => {
   const { token } = theme.useToken();
   const isMobile = useStore((state) => state.isMobile);
 
@@ -22,7 +24,7 @@ const TableFilter = ({ handleSearch, handleFormat }: ComponentProps) => {
       }}
     >
       <Space.Compact block direction="vertical">
-        <SelectionFilter handleFormat={handleFormat} />
+        <SelectionFilter handleFormat={handleFormat} handleHost={handleHost} hostName={hostName}/>
         <MultipleFilter handleSearch={handleSearch} />
       </Space.Compact>
       <Space

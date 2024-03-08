@@ -7,7 +7,8 @@ package main
 import (
 	"github.com/KeepShareOrg/keepshare/cmd"
 
-	_ "github.com/KeepShareOrg/keepshare/hosts/pikpak" // register PikPak host
+	// _ "github.com/KeepShareOrg/keepshare/hosts/pikpak"     // register PikPak host
+	_ "github.com/KeepShareOrg/keepshare/hosts/rapidgator" // register RapidGator host
 )
 
 func main() {

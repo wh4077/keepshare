@@ -9,6 +9,7 @@ import type { MenuProps } from "antd";
 import { Menu } from "antd";
 import PikPakLogo from "@/assets/images/PikPak.png";
 import MegaLogo from "@/assets/images/Mega.png";
+import RapidGatorLogo from "@/assets/images/RapidGator.png";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { RoutePaths } from "@/router";
@@ -53,6 +54,11 @@ const getMenuItems: () => MenuItem[] = () => [
         key: RoutePaths.Mega,
         label: "Mega",
         icon: <img src={MegaLogo} style={{ width: "14px", height: "14px" }} />,
+      },
+      {
+        key: RoutePaths.RapidGator,
+        label: "RapidGator",
+        icon: <img src={RapidGatorLogo} style={{ width: "14px", height: "14px" }} />,
       },
     ],
   },

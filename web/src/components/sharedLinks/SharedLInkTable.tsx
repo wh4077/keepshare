@@ -126,10 +126,8 @@ const getColumns = ({
     key: SharedLinkTableKey.KEEP_SHARING_LINK,
     ellipsis: true,
     width: 165,
-    render: ({ state, created_by, original_link }: SharedLinkInfo) => {
-      const link = `${location.origin}/${channelID}/${encodeURIComponent(
-        original_link,
-      )}`;
+    render: ({ state, host, created_by, original_link }: SharedLinkInfo) => {
+      const link = `${location.origin}/${channelID}/${encodeURIComponent(original_link,)}?host=${host}`;
       const isAutoShared = created_by === CreatedBy.AUTO_SHARE;
       const formatLink = formatLinkWithType(link, formatType);
       if (state === "CREATED") {
